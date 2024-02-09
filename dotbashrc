@@ -39,7 +39,7 @@ upld() {
         mkdir "/home/$USER/.cache/upld/dotconfig" &> /dev/null
     fi
     if [ -d "/home/$USER/.config/hypr" ]; then
-        cp -r "/home/$USER/.config/hypr" "/home/$USER/.cache/upld/dotconfig/hypr"
+        cp -r "/home/$USER/.config/hypr" "/home/$USER/.cache/upld/dotconfig/"
     fi
     cd "/home/$USER/.cache/upld"
     git add *
