@@ -18,7 +18,7 @@ updt() {
     mkdir "/home/$USER/.cache" &> /dev/null
     rm -rf "/home/$USER/.cache/updt"
     git clone git@github.com:FukuInTheCode/our_dotfiles.git "/home/$USER/.cache/updt"
-    if [ -f "/home/$USER/.cache/updt/.bashrc" ]; then
+    if [ -f "/home/$USER/.cache/updt/dotbashrc" ]; then
         cp "/home/$USER/.cache/updt/dotbashrc" "/home/$USER/"
     fi
     if [ -d "/home/$USER/.cache/updt/dotconfig/hypr" ]; then
@@ -39,8 +39,7 @@ upld() {
         mkdir "/home/$USER/.cache/upld/dotconfig" &> /dev/null
     fi
     if [ -d "/home/$USER/.config/hypr" ]; then
-	rm -rf "/home/$USER/.cache/upld/dotconfig/hypr"
-	cp -r "/home/$USER/.config/hypr" "/home/$USER/.cache/upld/dotconfig/"
+        cp -r "/home/$USER/.config/hypr" "/home/$USER/.cache/upld/dotconfig/hypr"
     fi
     cd "/home/$USER/.cache/upld"
     git add *
