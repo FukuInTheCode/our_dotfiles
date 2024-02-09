@@ -1,0 +1,52 @@
+#
+# ~/.bashrc
+#
+
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
+alias ls='ls --color=auto'
+alias grep='grep --color=auto'
+PS1='[\u@\h \W]\$ '
+
+alias c=clear
+alias l=ls
+alias ll="ls -al"
+alias ..="cd .." 
+
+updt() {
+    mkdir "/home/$USER/.cache" &> /dev/null
+    rm -rf "/home/$USER/.cache/updt"
+    git clone git@github.com:FukuInTheCode/our_dotfiles.git "/home/$USER/.cache/updt"
+    if [ -f "/home/$USER/.cache/updt/.bashrc" ]; then
+        cp "/home/$USER/.cache/updt/dotbashrc" "/home/$USER/"
+    fi
+    if [ -d "/home/$USER/.cache/updt/dotconfig/hypr" ]; then
+        cp -r "/home/$USER/.cache/updt/dotconfig/hypr" "/home/$USER/.config/"
+    fi
+    rm -rf "/home/$USER/.cache/updt"
+    return 0
+}
+
+upld() {
+    mkdir "/home/$USER/.cache" &> /dev/null
+    rm -rf "/home/$USER/.cache/upld"
+    git clone git@github.com:FukuInTheCode/our_dotfiles.git "/home/$USER/.cache/upld"
+    if [ -f "/home/$USER/.bashrc" ]; then
+        cp "/home/$USER/.bashrc" "/home/$USER/.cache/upld/dotbashrc"
+    fi
+    if [ ! -d "/home/$USER/.cache/upld/dotconfig" ]; then
+        mkdir "/home/$USER/.cache/upld/dotconfig" &> /dev/null
+    fi
+    if [ -d "/home/$USER/.config/hypr" ]; then
+        cp -r "/home/$USER/.config/hypr" "/home/$USER/.cache/upld/dotconfig/hypr"
+    fi
+    cd "/home/$USER/.cache/upld"
+    git add *
+    git commit -m "[~] Updates"
+    git push origin main
+    cd -
+    rm -rf "/home/$USER/.cache/upld"
+    return 0
+}
+
