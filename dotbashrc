@@ -43,8 +43,7 @@ upld() {
 	cp -r "/home/$USER/.config/hypr" "/home/$USER/.cache/upld/dotconfig/"
     fi
     cd "/home/$USER/.cache/upld"
-	return 0    
-git add *
+    git add *
     git commit -m "[~] Updates"
     git push origin main
     cd -
