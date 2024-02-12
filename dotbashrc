@@ -12,31 +12,25 @@ PS1='[\u@\h \W]\$ '
 alias c=clear
 alias l=ls
 alias ll="ls -al"
-alias ..="cd .."
-alias battery="cat /sys/class/power_supply/BAT0/capacity"
-alias chromium="chromium &"
-alias clion="clion &"
-alias commit="~/GitHub/my_scripts/push_that.sh"
-alias discord="discord &"
-alias nano="nano -l"
-alias mango="sudo mango"
+alias ..="cd .." 
 
-#update your pc
 updt() {
     mkdir "/home/$USER/.cache" &> /dev/null
     rm -rf "/home/$USER/.cache/updt"
     git clone git@github.com:FukuInTheCode/our_dotfiles.git "/home/$USER/.cache/updt"
-    if [ -f "/home/$USER/.cache/updt/.bashrc" ]; then
+    if [ -f "/home/$USER/.cache/updt/dotbashrc" ]; then
         cp "/home/$USER/.cache/updt/dotbashrc" "/home/$USER/"
     fi
     if [ -d "/home/$USER/.cache/updt/dotconfig/hypr" ]; then
         cp -r "/home/$USER/.cache/updt/dotconfig/hypr" "/home/$USER/.config/"
     fi
+    if [ -f "/home/$USER/.cache/updt/dotnanorc" ]; then
+        cp "/home/$USER/.cache/updt/dotnanorc" "/home/$USER/.nanorc"
+    fi
     rm -rf "/home/$USER/.cache/updt"
     return 0
 }
 
-#update github
 upld() {
     mkdir "/home/$USER/.cache" &> /dev/null
     rm -rf "/home/$USER/.cache/upld"
@@ -44,12 +38,15 @@ upld() {
     if [ -f "/home/$USER/.bashrc" ]; then
         cp "/home/$USER/.bashrc" "/home/$USER/.cache/upld/dotbashrc"
     fi
+    if [ -f "/home/$USER/.nanorc" ]; then
+        cp "/home/$USER/.nanorc" "/home/$USER/.cache/upld/dotnanorc"
+    fi
     if [ ! -d "/home/$USER/.cache/upld/dotconfig" ]; then
         mkdir "/home/$USER/.cache/upld/dotconfig" &> /dev/null
     fi
     if [ -d "/home/$USER/.config/hypr" ]; then
-	rm -rf "/home/$USER/.cache/upld/dotconfig/hypr"
-	cp -r "/home/$USER/.config/hypr" "/home/$USER/.cache/upld/dotconfig/"
+    	rm -rf "/home/$USER/.cache/upld/dotconfig/hypr"
+    	cp -r "/home/$USER/.config/hypr" "/home/$USER/.cache/upld/dotconfig/"
     fi
     cd "/home/$USER/.cache/upld"
     git add *
