@@ -25,6 +25,7 @@ alias song_50="pactl set-sink-volume @DEFAULT_SINK@ 50%"
 alias song_100="pactl set-sink-volume @DEFAULT_SINK@ 100%"
 alias test=~/.config/hypr/set_wallpaper.sh
 alias newProj="~/GitHub/my_scripts/project_initialization.sh"
+alias cd=z
 
 #update your pc
 updt() {
@@ -39,6 +40,9 @@ updt() {
     fi
     if [ -d "/home/$USER/.cache/updt/wallpapers" ]; then
         cp -r "/home/$USER/.cache/updt/wallpapers" "/home/$USER/.config/"
+    fi
+    if [ -d  "$HOME/.cache/updt/dotconfig/kitty" ]; then
+        cp -r "$HOME/.cache/updt/dotconfig/kitty" "$HOME/.config/"
     fi
     rm -rf "/home/$USER/.cache/updt"
     source $HOME/.bashrc
@@ -62,7 +66,11 @@ upld() {
     fi
     if [ -d "/home/$USER/.config/wallpapers" ]; then
         rm -rf "/home/$USER/.cache/upld/wallpapers"
-        cp -r "/home/$USER/.config/wallpapers" "/home/$USER/.cache/upld/"   
+        cp -r "/home/$USER/.config/wallpapers" "/home/$USER/.cache/upld/"
+    fi
+    if [ -d "$HOME/.config/kitty" ]; then
+        rm -rf "$HOME/.cache/upld/dotconfig/kitty"
+        cp -r "$HOME/.cache/upld/dotconfig/kitty" "$HOME/.config/"
     fi
     cd "/home/$USER/.cache/upld"
     git add *
