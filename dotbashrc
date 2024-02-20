@@ -23,6 +23,8 @@ alias mango="sudo mango"
 alias song_0="pactl set-sink-volume @DEFAULT_SINK@ 0%"
 alias song_50="pactl set-sink-volume @DEFAULT_SINK@ 50%"
 alias song_100="pactl set-sink-volume @DEFAULT_SINK@ 100%"
+alias test=~/.config/hypr/set_wallpaper.sh
+alias newProj="~/GitHub/my_scripts/project_initialization.sh"
 
 #update your pc
 updt() {
@@ -35,7 +37,11 @@ updt() {
     if [ -d "/home/$USER/.cache/updt/dotconfig/hypr" ]; then
         cp -r "/home/$USER/.cache/updt/dotconfig/hypr" "/home/$USER/.config/"
     fi
+    if [ -d "/home/$USER/.cache/updt/wallpapers" ]; then
+        cp -r "/home/$USER/.cache/updt/wallpapers" "/home/$USER/.config/"
+    fi
     rm -rf "/home/$USER/.cache/updt"
+    source $HOME/.bashrc
     return 0
 }
 
@@ -51,8 +57,12 @@ upld() {
         mkdir "/home/$USER/.cache/upld/dotconfig" &> /dev/null
     fi
     if [ -d "/home/$USER/.config/hypr" ]; then
-	rm -rf "/home/$USER/.cache/upld/dotconfig/hypr"
-	cp -r "/home/$USER/.config/hypr" "/home/$USER/.cache/upld/dotconfig/"
+	    rm -rf "/home/$USER/.cache/upld/dotconfig/hypr"
+	    cp -r "/home/$USER/.config/hypr" "/home/$USER/.cache/upld/dotconfig/"
+    fi
+    if [ -d "/home/$USER/.config/wallpapers" ]; then
+        rm -rf "/home/$USER/.cache/upld/wallpapers"
+        cp -r "/home/$USER/.config/wallpapers" "/home/$USER/.cache/upld/"   
     fi
     cd "/home/$USER/.cache/upld"
     git add *
@@ -63,3 +73,4 @@ upld() {
     return 0
 }
 
+eval "$(zoxide init bash)"
