@@ -5,8 +5,7 @@
 }
 
 window#waybar {
-    background-color: rgba(0, 0, 0, 1);
-    border-bottom: 3px solid rgba(100, 114, 125, 0.5);
+    background-color: rgba(0, 0, 0, 0);
     color: #ffffff;
     transition-property: background-color;
     transition-duration: .5s;
@@ -91,6 +90,7 @@ button:hover {
 #mpd {
     padding: 0 10px;
     color: #ffffff;
+    border-radius: 30px;
 }
 
 #window,
@@ -109,23 +109,23 @@ button:hover {
 }
 
 #clock {
-    background-color: #64727D;
+    background-color: #000000;
 }
 
 #battery {
-    background-color: #ffffff;
-    color: #000000;
+    background-color: #000000;
+    color: #ffffff;
 }
 
 #battery.charging, #battery.plugged {
     color: #ffffff;
-    background-color: #26A65B;
+    background-color: #000000;
 }
 
 @keyframes blink {
     to {
-        background-color: #ffffff;
-        color: #000000;
+        background-color: #000000;
+        color: #ffffff;
     }
 }
 
@@ -164,20 +164,21 @@ label:focus {
 }
 
 #backlight {
-    background-color: #90b1b1;
+    background-color: #000000;
 }
 
 #network {
-    background-color: #2980b9;
+    background-color: #000000;
 }
 
 #network.disconnected {
     background-color: #f53c3c;
+    border-radius: 30px;
 }
 
 #pulseaudio {
-    background-color: #f1c40f;
-    color: #000000;
+    background-color: #000000;
+    color: #ffffff;
 }
 
 #pulseaudio.muted {
