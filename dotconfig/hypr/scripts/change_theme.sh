@@ -2,7 +2,14 @@
 
 sudo rm -rf "$HOME/.config/hypr/themes/current_theme"
 
-new=$(find $HOME/.config/hypr/themes/ -maxdepth 1 -type d -name \*_theme | shuf -n 1)
+new=""
+
+if [ "$#" -eq 1 ]; then
+    new=$(echo -n "$HOME/.config/hypr/themes/$1")
+fi
+if ! [ -d "$new" ]; then
+    new=$(find $HOME/.config/hypr/themes/ -maxdepth 1 -type d -name \*_theme | shuf -n 1)
+fi
 
 cp -r "$new" "$HOME/.config/hypr/themes/current_theme"
 
